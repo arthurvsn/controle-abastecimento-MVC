@@ -71,15 +71,19 @@
               
             // insere no banco
             $DB = DB::construtor();
-            var_dump($DB);
-            $sql = "INSERT INTO cliente(name, email, senha, telefone) VALUES(:name, :email, :senha, :telefone)";
+            //var_dump($DB);
+            //$sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(:name, :email, :senha, :telefone)";
+            $sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(?, ?, ?, ?)";
             $stmt = $DB->prepare($sql);
-            $stmt->bindParam(':name', $name);
+            /*$stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':senha', $senha);
-            $stmt->bindParam(':birthdate', $telefone);
+            $stmt->bindParam(':birthdate', $telefone);*/
+            //$stmt->bindParam(':id_end', '2');
+
+            $teste = $stmt->execute(array($name, $email, $senha, $telefone));
      
-            if ($stmt->execute())
+            if ($teste)
             {
                 return true;
             }
