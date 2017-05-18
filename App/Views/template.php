@@ -7,7 +7,7 @@
     </head>
  
     <body>
-         
+        <h1>Titulo</h1>
         <?php 
         	if(isset($viewName)) {
         		$path = viewsPath() . $viewName . '.php'; 

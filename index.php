@@ -5,6 +5,7 @@ require'vendor/autoload.php';
 require'init.php'; 
 // instancia o Slim, habilitando os erros (útil para debug, em desenvolvimento) 
 require 'App/Controllers/UsersControllers.php';
+require 'App/Controllers/LoginControllers.php';
 
     //$app = new \Slim\Slim();
     $app = new \Slim\Slim(array(
@@ -16,8 +17,14 @@ require 'App/Controllers/UsersControllers.php';
         ]
     ]);
       
-    $app->get('/', function(){
-        
+    $app->get('/login', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->login();
+    });
+
+    $app->post('/logar', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->logar();        
     });
 
     // página inicial
@@ -29,6 +36,10 @@ require 'App/Controllers/UsersControllers.php';
     });
      
      
+    $app->get('/', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->login();
+    });
     // adição de usuário
     // exibe o formulário de cadastro
     $app->get('/add', function ()
