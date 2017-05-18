@@ -5,16 +5,16 @@
     class User { 
 
         /** * Busca usuários * * Se o ID não for passado, busca todos. Caso contrário, filtra pelo ID especificado. */ 
-        /*public static function selectAll($id = null) {
+        public static function selectAll($id = null) {
 
          $where = ''; 
 
          if (!empty($id)) { 
-            $where = 'WHERE id = :id'; } 
+            $where = 'WHERE Id_cliente = :id'; } 
 
-            $sql = sprintf("SELECT Id_cliente, nome, email, telefone FROM cliente %s ORDER BY nome ASC", $where); 
+            $sql = sprintf("SELECT Id_cliente, nome, email, telefone, id_end FROM cliente ORDER BY nome ASC"); 
 
-            $DB = DB::construtor(); 
+            $DB = DB::construtor();
             $stmt = $DB->prepare($sql);
      
             if (!empty($where))
@@ -27,16 +27,17 @@
             $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
      
             return $users;
-        }*/
+        }
         
-        public static function selectAll($id = 2) {
+        public static function selectAllById($id) {
 
-         $where = ''; 
+         //$where = ''; 
 
-         if (!empty($id)) { 
-            $where = 'WHERE Id_cliente = :id'; } 
+        if (!empty($id)) { 
+            $where = 'WHERE Id_cliente = :id'; 
+        }
 
-            $sql = sprintf("SELECT Id_cliente, nome, email, telefone, id_end FROM cliente ORDER BY nome ASC"); 
+            $sql = sprintf("SELECT Id_cliente, nome, email, telefone, id_end FROM cliente $where"); 
 
             $DB = DB::construtor();
             $stmt = $DB->prepare($sql);
@@ -111,16 +112,16 @@
               
             // a data vem no formato dd/mm/YYYY
             // então precisamos converter para YYYY-mm-dd
-            $isoDate = dateConvert($birthdate);
+            //$isoDate = dateConvert($birthdate);
               
             // insere no banco
             $DB = DB::construtor();
-            $sql = "UPDATE users SET name = :name, email = :email, gender = :gender, birthdate = :birthdate WHERE id = :id";
+            $sql = "UPDATE cliente SET nome = :name, email = :email, senha = :senha, telefone = :telefone WHERE Id_cliente = :id";
             $stmt = $DB->prepare($sql);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':gender', $gender);
-            $stmt->bindParam(':birthdate', $isoDate);
+            $stmt->bindParam(':senha', $senha);
+            $stmt->bindParam(':telefone', $telefone);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
      
             if ($stmt->execute())
@@ -147,7 +148,7 @@
               
             // remove do banco
             $DB = DB::construtor();
-            $sql = "DELETE FROM users WHERE id = :id";
+            $sql = "DELETE FROM cliente WHERE Id_cliente = :id";
             $stmt = $DB->prepare($sql);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
               

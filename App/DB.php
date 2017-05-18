@@ -14,7 +14,7 @@ class DB extends \PDO
 		try{
     		$PDO = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DBNAME, MYSQL_USER, MYSQL_PASS);
     		$PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		echo "Connected successfully"; 
+    		//echo "Connected successfully"; 
 		}
 		catch ( PDOException $e ){
 		    echo 'Erro ao conectar com o MySQL: ' . $e->getMessage();

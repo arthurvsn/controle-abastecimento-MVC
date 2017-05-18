@@ -10,7 +10,9 @@
         public function index(){
              $users = User::selectAll(); 
 
-             \App\View::make('users.index', [ 'users' => $users]);
+             \App\View::make('users.index',
+                [ 'users' => $users]
+            );
         } 
  
         /**
@@ -46,11 +48,9 @@
          */
         public function edit($id)
         {
-            $user = User::selectAll($id)[0];
+            $user = User::selectAllById($id);
      
-            \App\View::make('users.edit',[
-                'user' => $user,
-            ]);
+            \App\View::make('users.edit', ['user' => $user]);
         }
      
      
@@ -60,13 +60,13 @@
         public function update()
         {
             // pega os dados do formuário
-            $id = $_POST['id'];
+            $id_cliente = $_POST['id'];
             $name = isset($_POST['name']) ? $_POST['name'] : null;
             $email = isset($_POST['email']) ? $_POST['email'] : null;
-            $gender = isset($_POST['gender']) ? $_POST['gender'] : null;
-            $birthdate = isset($_POST['birthdate']) ? $_POST['birthdate'] : null;
+            $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
+            $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
      
-            if (User::update($id, $name, $email, $gender, $birthdate))
+            if (User::update($id_cliente, $name, $email, $senha, $telefone))
             {
                 header('Location: /');
                 exit;
@@ -79,11 +79,14 @@
          */
         public function remove($id)
         {
-            if (User::remove($id))
+            \App\View::make('users.remove');
+            /*if (User::remove($id))
             {
                 header('Location: /');
                 exit;
-            }
+            }*/
         }
+
+        
     }
 ?>

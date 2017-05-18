@@ -16,9 +16,13 @@ require 'App/Controllers/UsersControllers.php';
         ]
     ]);
       
+    $app->get('/', function(){
+        
+    });
+
     // página inicial
     // listagem de usuários
-    $app->get('/', function ()
+    $app->get('/user', function ()
     {
         $UsersController = new \App\Controllers\UsersController;
         $UsersController->index();
@@ -43,11 +47,10 @@ require 'App/Controllers/UsersControllers.php';
      
     // edição de usuário
     // exibe o formulário de edição
-    $app->get('/edit/{id}', function ($request)
+    $app->get('/edit/:id', function ($id)
     {
         // pega o ID da URL
-        $id = $request->getAttribute('id');
-     
+        //$id = $request->getAttribute('id');
         $UsersController = new \App\Controllers\UsersController;
         $UsersController->edit($id);
     });
@@ -60,13 +63,18 @@ require 'App/Controllers/UsersControllers.php';
     });
      
     // remove um usuário
-    $app->get('/remove/{id}', function ($request)
+    $app->get('/remove/:id', function ($id)
     {
         // pega o ID da URL
-        $id = $request->getAttribute('id');
-     
+        //$id = $request->getAttribute('id');        
         $UsersController = new \App\Controllers\UsersController;
         $UsersController->remove($id);
+    });
+    
+    $app->get('/teste/:id', function($id){
+        //$ID = $request->getAttribute('id');
+        $ID = $id;
+        echo "teste com id -> $ID";
     });
      
     $app->run();

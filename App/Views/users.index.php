@@ -1,7 +1,4 @@
-<h1>Listagem de Usuários</h1>
- 
- 
- 
+<h1>Listagem de Usuários</h1> 
  
 <a href="/add">Adicionar Usuário</a>
  
@@ -37,7 +34,6 @@
 <tr>
  
 <td><?php echo $user['nome']; ?></td>
- 
  
 <td><?php echo $user['email']; ?></td>
 
