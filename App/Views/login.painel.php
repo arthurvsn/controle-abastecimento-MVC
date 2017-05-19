@@ -1,75 +1,29 @@
 <?php
 
+//use App\Controllers\VeiculoController;
 require_once 'init.php';
- 
-if (!isLoggedIn())
-{
-    header('Location: /');
-}
 
-session_start();
+	 
+	if (!isLoggedIn()){
+	   	header('Location: /');
+	}
+
+//session_start();
 
 ?>
 
 <h1>Painel do Usuário</h1>
  
-<p>Bem-vindo ao seu painel, <?php echo $_SESSION['user_name']; ?> | <a href="/logout">Sair</a></p>
+<p>Bem-vindo ao seu painel, <strong><?php echo $_SESSION['user_name']; ?></strong> | <a href="/logout">Sair</a></p>
 
-<h2>Veiculos cadastrados</h2>
+<h3>Opções de edição de perfil</h3>
 
-<thead>
- 
-	<tr>
-	 
-		<th>Modelo</th>
-		 
-		 
-		<th>Ano Fabricação</th>
-		 
-		 
-		<th>Marca</th>		 				
-		 
-		 
-		<th>Opções</th>
-	 
-	 	<th>Cadastrar Abastecimento</th>
-	</tr>
+<a href="/cliente/edit/<?php echo $_SESSION['user_id']; ?>">Editar perfil</a>
 
-</thead>
+<h3>Opções de controle de veiculo</h3>
 
-<tbody>
-        <?php foreach ($users as $user): ?> 
-<tr>
- 
-<td><?php echo $user['nome']; ?></td>
- 
-<td><?php echo $user['email']; ?></td>
-
-<td><?php echo $user['telefone']; ?></td>
-
-<td><?php echo $user['id_end']; ?></td>
-
-<td>
-	<a href="/edit/<?php echo $user['Id_cliente']; ?>">Editar</a>
-    <a href="/remove/<?php echo $user['Id_cliente']; ?>" onclick="return confirm('Tem certeza de que deseja remover?');">Remover</a>
-</td>
- </tr>
+<a href="/veiculo/">Listar veiculos</a>
+<a href="/veiculo/add">Adicionar novo veiculo</a>
 
 
-<?php endforeach; ?>
-
-
-</tbody>
- 
-</table>
- 
- 
-<?php else: ?>
- 
- 
- 
-Nenhum usuário cadastrado
- 
- 
-<?php endif; ?>
  

@@ -16,3 +16,9 @@
  
         <input type="submit" value="Entrar">
     </form>
+
+    <br>
+
+    <form action="/add" method="get">
+        <input type="submit" value="Cadastrar">
+    </form>

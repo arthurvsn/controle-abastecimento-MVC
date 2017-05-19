@@ -35,7 +35,7 @@
 		// pega o primeiro usuário
 		$user = $users[0];
 		 
-		session_start();
+		//session_start();
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user['Id_cliente'];
 		$_SESSION['user_name'] = $user['nome'];	
