@@ -1,25 +1,12 @@
 <?php
-session_start();
+//session_start();
  
-require 'init.php';
-?>
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
+//require 'init.php';
+?>       
+    <h1>Sistema de Login ULTIMATE PHP</h1>
  
-        <title>Sistema de Login ULTIMATE PHP</title>
-    </head>
- 
-    <body>
-         
-        <h1>Sistema de Login ULTIMATE PHP</h1>
- 
-        <?php if (isLoggedIn()): ?>
-            <p>Olá, <?php echo $_SESSION['user_name']; ?>. <a href="panel.php">Painel</a> | <a href="logout.php">Sair</a></p>
-        <?php else: ?>
-            <p>Olá, visitante.</p>
-        <?php endif; ?>
- 
-    </body>
-</html>
+    <?php if (isLoggedIn()): ?>
+        <p>Olá, <?php echo $_SESSION['user_name']; ?>. <a href="/painel">Painel</a> | <a href="/logout">Sair</a></p>
+    <?php else: ?>
+        <p>Olá, visitante.</p>
+    <?php endif; ?>

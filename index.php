@@ -16,15 +16,30 @@ require 'App/Controllers/LoginControllers.php';
             'displayErrorDetails' => true
         ]
     ]);
+
+    $app->get('/', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->login();
+    });
       
     $app->get('/login', function(){
         $LoginController = new \App\Controllers\LoginController;
         $LoginController->login();
     });
 
-    $app->post('/logar', function(){
+    $app->post('/logar', function(){        
         $LoginController = new \App\Controllers\LoginController;
         $LoginController->logar();        
+    });
+
+    $app->get('/logout', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->logout();
+    });
+
+    $app->get('/painel', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->check(); 
     });
 
     // página inicial
@@ -34,12 +49,7 @@ require 'App/Controllers/LoginControllers.php';
         $UsersController = new \App\Controllers\UsersController;
         $UsersController->index();
     });
-     
-     
-    $app->get('/', function(){
-        $LoginController = new \App\Controllers\LoginController;
-        $LoginController->login();
-    });
+
     // adição de usuário
     // exibe o formulário de cadastro
     $app->get('/add', function ()

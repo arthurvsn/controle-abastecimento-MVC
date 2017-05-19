@@ -6,10 +6,12 @@
 
     	public static function Logar($email, $senha){    	
 
-    	$where = 'WHERE email = :email AND senha = :senha';
+    	$where = 'WHERE email = :email AND Senha = :senha';
     	$DB = DB::construtor();
 		 
-		$sql = "SELECT Id_cliente, nome FROM cliente $where";
+		$sql = "SELECT Id_cliente, nome FROM cliente WHERE email = :email AND Senha = :senha";
+
+
 		$stmt = $DB->prepare($sql);
 		 
 		/*$stmt->bindParam(':email', $email);
@@ -20,10 +22,10 @@
             $stmt->bindParam(':senha', $senha, \PDO::PARAM_INT);
         }
 		 
-		$stmt->execute();
-		 
+		$stmt->execute();		
+
 		$users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-		 
+
 		if (count($users) <= 0)
 		{
 		    echo "Email ou senha incorretos";
@@ -36,7 +38,9 @@
 		session_start();
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user['Id_cliente'];
-		$_SESSION['user_name'] = $user['nome'];		 		
+		$_SESSION['user_name'] = $user['nome'];	
+
+		return $user;
 
     	}
     }
