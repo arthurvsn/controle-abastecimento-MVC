@@ -105,6 +105,17 @@ require 'App/Controllers/VeiculoControllers.php';
         $VeiculoController->index();
     });
 
+    $app->get('/veiculo/add', function(){
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->create();
+    });
+
+     $app->post('/veiculo/add', function ()
+    {
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->store();
+    });
+
     $app->get('/veiculo/edit/:id', function($id){
         $VeiculoController = new \App\Controllers\VeiculoController;
         $VeiculoController->edit($id); 
@@ -114,6 +125,27 @@ require 'App/Controllers/VeiculoControllers.php';
         $VeiculoController = new \App\Controllers\VeiculoController;
         $VeiculoController->update(); 
     });
+
+    $app->get('/veiculo/remove/:id', function($id){
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->remove($id); 
+    });
+
+    //usuario 
+    $app->get('/cliente/edit/:id', function ($id)
+    {
+        // pega o ID da URL
+        //$id = $request->getAttribute('id');
+        $UsersController = new \App\Controllers\UsersController;
+        $UsersController->edit($id);
+    });
+     
+    // processa o formulário de edição
+    $app->post('/cliente/edit', function ()
+    {
+        $UsersController = new \App\Controllers\UsersController;
+        $UsersController->update();
+    });    
 
     $app->run();
 ?>

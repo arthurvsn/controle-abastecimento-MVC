@@ -29,14 +29,13 @@
         public function store()
         {
             // pega os dados do formuário
-            $name = isset($_POST['name']) ? $_POST['name'] : null;
-            $email = isset($_POST['email']) ? $_POST['email'] : null;
-            $password = isset($_POST['senha']) ? $_POST['senha'] : null;
-            $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+            $modelo = isset($_POST['modelo']) ? $_POST['modelo'] : null;
+            $anoFab = isset($_POST['anofab']) ? $_POST['anofab'] : null;
+            $marca = isset($_POST['marca']) ? $_POST['marca'] : null;
      
-            if (User::save($name, $email, $password, $telefone))
+            if (Veiculo::save($modelo, $anoFab, $marca, $_SESSION['user_id']))
             {
-                header('Location: /');
+                header('Location: /painel');
                 exit;
             }
         }
@@ -66,9 +65,9 @@
             $marca = isset($_POST['marca']) ? $_POST['marca'] : null;
             
      
-            if (User::update($id_veic, $modelo, $AnoFab, $marca))
+            if (Veiculo::update($id_veic, $modelo, $AnoFab, $marca, $_SESSION['user_id']))
             {
-                header('Location: /veiculo/');
+                header('Location: /veiculo');
                 exit;
             }
         }
@@ -79,12 +78,12 @@
          */
         public function remove($id)
         {
-            \App\View::make('users.remove');
-            /*if (User::remove($id))
+            //\App\View::make('users.remove');
+            if (Veiculo::remove($id))
             {
-                header('Location: /');
+                header('Location: /veiculo');
                 exit;
-            }*/
+            }
         }
 
         

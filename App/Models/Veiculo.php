@@ -59,7 +59,7 @@
          //$where = ''; 
 
         if (!empty($id)) { 
-            $where = 'WHERE Id_cliente = :id'; 
+            $where = 'WHERE Id_veic = :id'; 
         }
 
             $sql = sprintf("SELECT Id_veic, modelo, Ano_fab, marca FROM veiculo $where"); 
@@ -83,7 +83,7 @@
         /**
          * Salva no banco de dados um novo usuário
          */
-        public static function save($id_veic, $modelo, $AnoFab, $marca)
+        public static function save($modelo, $AnoFab, $marca, $id_cliente)
         {
             // validação (bem simples, só pra evitar dados vazios)
             if (empty($modelo) || empty($AnoFab) || empty($marca))
@@ -94,14 +94,14 @@
               
             // a data vem no formato dd/mm/YYYY
             // então precisamos converter para YYYY-mm-dd
-            $isoDate = dateConvert($AnoFab);
+            //$isoDate = dateConvert($AnoFab);
               
             // insere no banco
             $DB = DB::construtor();            
-            $sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(?, ?, ?, ?)";
+            $sql = "INSERT INTO veiculo (Modelo, Ano_fab, Marca, id_cliente) VALUES (?, ?, ?, ?)";
             $stmt = $DB->prepare($sql);
 
-            $teste = $stmt->execute(array($name, $email, $senha, $telefone));
+            $teste = $stmt->execute(array($modelo, $AnoFab, $marca, $id_cliente));
      
             if ($teste)
             {
@@ -115,12 +115,10 @@
             }
         }
      
-     
-     
         /**
          * Altera no banco de dados um usuário
          */
-        public static function update($id_veic, $modelo, $AnoFab, $marca)
+        public static function update($id_veic, $modelo, $AnoFab, $marca, $id_cliente)
         {
             // validação (bem simples, só pra evitar dados vazios)
             if (empty($modelo) || empty($AnoFab) || empty($marca))
@@ -135,12 +133,13 @@
               
             // insere no banco
             $DB = DB::construtor();
-            $sql = "UPDATE veiculo SET Modelo = :modelo, Ano_fab = :AnoFab, Marca = :marca WHERE Id_cliente = :id_veic";
+            $sql = "UPDATE veiculo SET Modelo = :modelo, Ano_fab = :AnoFab, Marca = :marca WHERE Id_cliente = :id_cliente AND Id_veic = :id_veic";
             $stmt = $DB->prepare($sql);
             $stmt->bindParam(':modelo', $modelo);
             $stmt->bindParam(':AnoFab', $AnoFab);
             $stmt->bindParam(':marca', $marca);
             $stmt->bindParam(':id_veic', $id_veic, \PDO::PARAM_INT);
+            $stmt->bindParam(':id_cliente', $id_cliente, \PDO::PARAM_INT);
      
             if ($stmt->execute())
             {
@@ -166,7 +165,7 @@
               
             // remove do banco
             $DB = DB::construtor();
-            $sql = "DELETE FROM cliente WHERE Id_cliente = :id";
+            $sql = "DELETE FROM veiculo WHERE Id_veic = :id";
             $stmt = $DB->prepare($sql);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
               

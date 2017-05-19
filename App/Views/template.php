@@ -10,7 +10,7 @@
         <h1>Meu controle</h1>
         <ul>
             <li><a href="/painel">Home</a>
-
+            <li><a href="/logout">Sair</a>
         </ul>
         <?php 
         	if(isset($viewName)) {

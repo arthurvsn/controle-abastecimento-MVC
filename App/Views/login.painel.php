@@ -18,7 +18,7 @@ require_once 'init.php';
 
 <h3>Opções de edição de perfil</h3>
 
-<a href="/cliente/edit">Editar perfil</a>
+<a href="/cliente/edit/<?php echo $_SESSION['user_id']; ?>">Editar perfil</a>
 
 <h3>Opções de controle de veiculo</h3>
 
