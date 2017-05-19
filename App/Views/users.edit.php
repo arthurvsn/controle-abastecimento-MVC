@@ -1,10 +1,9 @@
-<h2>Edição de Usuário</h2>
- 
-          
+<h2>Edição de Usuário</h2>   
  
 <form action="/edit" method="post">
 
     <?php foreach ($user as $users): ?> 
+
     <label for="name">Nome: </label>     
     <input type="text" name="name" id="name" value="<?php echo $users['nome']; ?>"><br><br>
  
@@ -24,5 +23,4 @@
  
     <input type="submit" value="Cadastrar">
 
-     
-    </form>
+</form>

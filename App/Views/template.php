@@ -7,7 +7,11 @@
     </head>
  
     <body>
-        <h1>Titulo</h1>
+        <h1>Meu controle</h1>
+        <ul>
+            <li><a href="/painel">Home</a>
+
+        </ul>
         <?php 
         	if(isset($viewName)) {
         		$path = viewsPath() . $viewName . '.php'; 

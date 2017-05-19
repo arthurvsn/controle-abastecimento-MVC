@@ -6,6 +6,7 @@ require'init.php';
 // instancia o Slim, habilitando os erros (útil para debug, em desenvolvimento) 
 require 'App/Controllers/UsersControllers.php';
 require 'App/Controllers/LoginControllers.php';
+require 'App/Controllers/VeiculoControllers.php';
 
     //$app = new \Slim\Slim();
     $app = new \Slim\Slim(array(
@@ -17,11 +18,13 @@ require 'App/Controllers/LoginControllers.php';
         ]
     ]);
 
+    //Página inicial
     $app->get('/', function(){
         $LoginController = new \App\Controllers\LoginController;
         $LoginController->login();
     });
       
+    //Opções de login
     $app->get('/login', function(){
         $LoginController = new \App\Controllers\LoginController;
         $LoginController->login();
@@ -42,8 +45,7 @@ require 'App/Controllers/LoginControllers.php';
         $LoginController->check(); 
     });
 
-    // página inicial
-    // listagem de usuários
+    // listagem de usuários colocar só adm
     $app->get('/user', function ()
     {
         $UsersController = new \App\Controllers\UsersController;
@@ -97,6 +99,21 @@ require 'App/Controllers/LoginControllers.php';
         $ID = $id;
         echo "teste com id -> $ID";
     });
-     
+    
+    $app->get('/veiculo/', function(){
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->index();
+    });
+
+    $app->get('/veiculo/edit/:id', function($id){
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->edit($id); 
+    });
+
+    $app->post('/veiculo/edit/', function(){
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->update(); 
+    });
+
     $app->run();
 ?>

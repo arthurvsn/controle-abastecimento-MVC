@@ -37,7 +37,7 @@
 
     	public function logout(){
 
-    		session_start();
+    		//session_start();
 			// muda o valor de logged_in para false
 			$_SESSION['logged_in'] = false;
 			 
@@ -46,6 +46,7 @@
 			 
 			// retorna para a index.php
 			header('Location: /');
+			exit;
     	}  
 
     	public function check(){    		
