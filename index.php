@@ -145,7 +145,18 @@ require 'App/Controllers/VeiculoControllers.php';
     {
         $UsersController = new \App\Controllers\UsersController;
         $UsersController->update();
-    });    
+    }); 
+
+    //Abastecimento
+    $app->get('/abastecimento/add', function(){
+        $AbastecimentoController = new \App\Controllers\Abastecimento;
+        $AbastecimentoController->create();
+    }); 
+
+    $app->post('/abastecimento/add', function(){
+        $AbastecimentoController = new \App\Controllers\Abastecimento;
+        $AbastecimentoController->store();
+    }); 
 
     $app->run();
 ?>
