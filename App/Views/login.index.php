@@ -3,10 +3,10 @@
  
 //require 'init.php';
 ?>       
-    <h1>Sistema de Login ULTIMATE PHP</h1>
+    <h1>Bem vindo ao sistema</h1>
  
     <?php if (isLoggedIn()): ?>
-        <p>Olá, <?php echo $_SESSION['user_name']; ?>. <a href="/painel">Painel</a> | <a href="/logout">Sair</a></p>
+        <p>Olá, <strong><?php echo $_SESSION['user_name']; ?></strong>. <a href="/painel">Painel</a> | <a href="/logout">Sair</a></p>
     <?php else: ?>
         <p>Olá, visitante.</p>
     <?php endif; ?>
