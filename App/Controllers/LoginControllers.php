@@ -10,18 +10,22 @@
 
     	public function login(){    		
      
- 	       \App\View::make('login.form'); 	
+ 	       \App\View::make('login.form');
+ 	       //require_once('login.form.php'); 	
     	}
 
     	public function logar(){
 
     		// resgata variáveis do formulário
 			$email = isset($_POST['email']) ? $_POST['email'] : '';
-			$senha = isset($_POST['password']) ? $_POST['password'] : '';
+			$password = isset($_POST['password']) ? $_POST['password'] : '';
 
 
 			// cria o hash da senha
-			//$passwordHash = make_hash($password);
+			//$senha = sha1(md5($password));
+
+			$senha = sha1(md5("teste"));			
+			//$senha = make_hash($password);
 
 			$user = Login::Logar($email, $senha);
 
@@ -36,8 +40,7 @@
     	}
 
     	public function logout(){
-
-    		//session_start();
+    		
 			// muda o valor de logged_in para false
 			$_SESSION['logged_in'] = false;
 			 
@@ -53,7 +56,21 @@
 			
 			\App\View::make('login.painel');			
 			
-    	}  			
-	}			
+    	} 
 
+    	public function Recuperar(){
+
+			$email = isset($_POST['email']) ? $_POST['email'] : '';
+			$q = Login::Recuperar($email);
+
+			if( mysql_num_rows($q) == 1 ){
+			      // o utilizador existe, vamos gerar um link único e enviá-lo para o e-mail
+			 
+			      // gerar a chave
+			      // exemplo adaptado de http://snipplr.com/view/20236/
+			      $chave = sha1(uniqid( mt_rand(), true));
+			 
+			}			     
+		}
+    }
 ?>

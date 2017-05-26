@@ -12,7 +12,7 @@
          if (!empty($id)) { 
             $where = 'WHERE Id_abastec = :id'; } 
 
-            $sql = sprintf("SELECT Id_abastec, Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic FROM abastecimento ORDER BY nome ASC"); 
+            $sql = sprintf("SELECT Id_abastec, Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic FROM abastecimento ORDER BY Data ASC"); 
 
             $DB = DB::construtor();
             $stmt = $DB->prepare($sql);
@@ -34,33 +34,33 @@
          //$where = ''; 
 
         if (!empty($id)) { 
-            $where = 'WHERE Id_abastec = :id'; } 
-        }
+            $where = 'WHERE Id_abastec = :id'; 
+        }         
 
             $sql = sprintf("SELECT Id_abastec, Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic FROM abastecimento $where"); 
 
             $DB = DB::construtor();
             $stmt = $DB->prepare($sql);
-     
+         
             if (!empty($where))
-            {
-                $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-            }
-     
+                {
+                    $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+                }
+         
             $stmt->execute();
-     
+         
             $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-     
+         
             return $users;
         }
      
         /**
          * Salva no banco de dados um novo usuário
          */
-        public static function save($data, $tipoCombus, $valor, $odoAtual, $odoAnt,  $litros, $id_veic)
+        public static function save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $litros, $id_veic)
         {
             // validação (bem simples, só pra evitar dados vazios)
-            if (empty($data) || empty($tipoCombus) || empty($valor) || empty($litros))
+            if (empty($data) || empty($tipoComb) || empty($valor) || empty($litros))
             {
                 echo "Volte e preencha todos os campos";
                 return false;
@@ -74,7 +74,7 @@
             $DB = DB::construtor();
             //var_dump($DB);
             //$sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(:name, :email, :senha, :telefone)";
-            $sql = "INSERT INTO abastecimento(Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic VALUES(?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO abastecimento(Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic) VALUES(?, ?, ?, ?, ?, ?, ?)";
             $stmt = $DB->prepare($sql);
             /*$stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
@@ -82,7 +82,7 @@
             $stmt->bindParam(':birthdate', $telefone);*/
             //$stmt->bindParam(':id_end', '2');
 
-            $teste = $stmt->execute(array($isoDate, $tipoCombus, $valor, $odoAtual, $odoAnt,  $litros, $id_veic));
+            $teste = $stmt->execute(array($isoDate, $tipoComb, $valor, $odometroAt, $odometroAnt,  $litros, $id_veic));
      
             if ($teste)
             {

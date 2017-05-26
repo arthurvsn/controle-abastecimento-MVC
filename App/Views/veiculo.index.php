@@ -38,7 +38,7 @@
 </td>
 
 <td>
-	<a href="/abastecimento/creat" value="<php <?php echo $veiculos['Id_veic']; ?>">Abastecer</a>
+	<a href="/abastecimento" value="<php <?php echo $veiculos['Id_veic']; ?>"<?php $_SESSION['id_veiculo'] = $veiculos['modelo']; ?> >Abastecer</a>
 </td>
 </tr>
 

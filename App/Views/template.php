@@ -9,7 +9,12 @@
     <body>
         <h1>Meu controle</h1>
         <ul>
+             <?php if (isLoggedIn()): ?>
             <li><a href="/painel">Home</a>
+            <?php else: ?>
+            <li><a href="/login">Home</a>
+             <?php endif; ?>
+
             <li><a href="/logout">Sair</a>
         </ul>
         <?php 

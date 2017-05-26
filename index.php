@@ -7,6 +7,7 @@ require'init.php';
 require 'App/Controllers/UsersControllers.php';
 require 'App/Controllers/LoginControllers.php';
 require 'App/Controllers/VeiculoControllers.php';
+require 'App/Controllers/AbastecimentoControllers.php';
 
     //$app = new \Slim\Slim();
     $app = new \Slim\Slim(array(
@@ -148,13 +149,18 @@ require 'App/Controllers/VeiculoControllers.php';
     }); 
 
     //Abastecimento
+     $app->get('/abastecimento', function(){
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
+        $AbastecimentoController->index();
+    }); 
+
     $app->get('/abastecimento/add', function(){
-        $AbastecimentoController = new \App\Controllers\Abastecimento;
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->create();
     }); 
 
     $app->post('/abastecimento/add', function(){
-        $AbastecimentoController = new \App\Controllers\Abastecimento;
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->store();
     }); 
 

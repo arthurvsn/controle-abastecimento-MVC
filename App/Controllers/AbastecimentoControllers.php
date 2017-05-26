@@ -8,7 +8,7 @@
 
         /** * Listagem de usuários */ 
         public function index(){
-             $users = User::selectAll(); 
+             $abastecimento = Abastecimento::selectAllById($_SESSION['id_veiculo']); 
 
              \App\View::make('abastecimento.index',
                 [ 'abastecimento' => $abastecimento]
@@ -37,7 +37,7 @@
             $litros = isset($_POST['litros']) ? $_POST['litros'] : null;
             $id_veic = isset($_POST['id_veic']) ? $_POST['id_veic'] : null;
      
-            if (User::save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $odometroAt, $litros, $id_veic))
+            if (Abastecimento::save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $litros, $id_veic))
             {
                 header('Location: /abastecimento');
                 exit;
@@ -51,7 +51,7 @@
          */
         public function edit($id)
         {
-            $user = User::selectAllById($id);
+            $abastecimento = Abastecimento::selectAllById($id);
      
             \App\View::make('abastecimento.edit', ['abastecimento' => $abastecimento]);
         }
@@ -69,7 +69,7 @@
             $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
             $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
      
-            if (User::update($id_cliente, $name, $email, $senha, $telefone))
+            if (Abastecimento::update($id_cliente, $name, $email, $senha, $telefone))
             {
                 header('Location: /');
                 exit;
@@ -82,8 +82,8 @@
          */
         public function remove($id)
         {
-            \App\View::make('users.remove');
-            /*if (User::remove($id))
+            \App\View::make('Abastecimentos.remove');
+            /*if (Abastecimento::remove($id))
             {
                 header('Location: /');
                 exit;

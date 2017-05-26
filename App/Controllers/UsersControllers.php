@@ -33,8 +33,9 @@
             $email = isset($_POST['email']) ? $_POST['email'] : null;
             $password = isset($_POST['senha']) ? $_POST['senha'] : null;
             $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
-     
-            if (User::save($name, $email, $password, $telefone))
+        
+            $senha = sha1(md5($password));
+            if (User::save($name, $email, $senha, $telefone))
             {
                 header('Location: /');
                 exit;
@@ -63,12 +64,21 @@
             $id_cliente = $_POST['id'];
             $name = isset($_POST['name']) ? $_POST['name'] : null;
             $email = isset($_POST['email']) ? $_POST['email'] : null;
-            $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
+            $password = isset($_POST['senha']) ? $_POST['senha'] : null;            
+            $senhaNova = isset($_POST['senhaRepetida']) ? $_POST['senhaRepetida'] : null;        
             $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
-     
-            if (User::update($id_cliente, $name, $email, $senha, $telefone))
-            {
-                header('Location: /');
+
+            $senha = sha1(md5($password));
+            $senhaNova = sha1(md5($password));
+
+            if($senha == $senhaNova){
+                if (User::update($id_cliente, $name, $email, $senha, $telefone))
+                {
+                    header('Location: /');
+                    exit;
+                }
+            }else{            
+                header('Location: /edit/'.$_SESSION['user_id']);
                 exit;
             }
         }

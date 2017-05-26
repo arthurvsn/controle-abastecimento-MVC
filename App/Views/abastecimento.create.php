@@ -7,12 +7,6 @@
         <input type="text" name="data" id="data" placeholder="dd/mm/YYYY">
  
         <br><br>
- 
-        <label for="tipoComb">Tipo Combustivel: </label>
-        <br>
-        <input type="tipoComb" name="tipoComb" id="tipoComb">
- 
-        <br><br>
 
         Tipo Combustivel:
      
@@ -22,29 +16,25 @@
             <label for="tipoComb_A">Alcool</label>
             <input type="radio" name="tipoComb" id="tipoComb_D" value="Diesel">
             <label for="tipoComb_D">Diesel</label>
-        
+          <br>  <br>
+
         <label for="valor">Valor: </label>
-        <br>
-        <input type="valor" name="valor" id="valor">
+        <input type="tel" required="required" maxlength="15" name="valor" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" />
 
         <label for="odometroAt">Odometro Atual: </label>
-        <br>
-        <input type="odometroAt" name="odometroAt" id="odometroAt">
+        
+        <input type="odometroAt" name="odometroAt" id="odometroAt">  <br>
 
         <label for="odometroAnt">Odometro Anterior: </label>
-        <br>
-        <input type="odometroAnt" name="odometroAnt" id="odometroAnt">
+        
+        <input type="odometroAnt" name="odometroAnt" id="odometroAnt">  <br>
 
         <label for="litros">Litros:</label>
-        <br>
-        <input type="litros" name="litros" id="litros">
+        
+        <input type="litros" name="litros" id="litros">  <br>
 
-       <input type="hidden" name="id_veic" value="<?php echo $veiculos['Id_veic'] ?>">
-
-    </form>
+       <input type="hidden" name="id_veic" value="<?php echo $_SESSION['id_veiculo'] ?>">    
 
     <br>
-
-    <form action="/abastecimento/add" method="get">
         <input type="submit" value="Cadastrar">
     </form>
