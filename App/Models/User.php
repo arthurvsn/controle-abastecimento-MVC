@@ -62,16 +62,20 @@
             $sql = "SELECT email FROM cliente WHERE email = :email";
             $DB = DB::construtor();
 
+            $stmt = $DB->prepare($sql);
             $stmt->bindParam(':email', $email);
 
             if ($stmt->execute()){
                     return true;
                 }else{
-
-                    return true;
+                    return false;
             }
-
         }
+
+        /**
+        * Salva no banco de dados um novo usuário
+        */
+
         public static function save($name, $email, $senha, $telefone)
         {
             // validação (bem simples, só pra evitar dados vazios)
@@ -81,29 +85,19 @@
                 return false;
             }
 
-            if(User::pesquisaEmail($email)){
-                echo "Email já cadastrado, tente outro";
+            if(User::pesquisaEmail($email)){                
 
-                header('Location: /add');
+                header('Location /add');
                 exit;
             }
               
-            // a data vem no formato dd/mm/YYYY
-            // então precisamos converter para YYYY-mm-dd
-            //$isoDate = dateConvert($birthdate);
-              
+          
             // insere no banco
             $DB = DB::construtor();
-            //var_dump($DB);
-            //$sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(:name, :email, :senha, :telefone)";
+          
             $sql = "INSERT INTO cliente(nome, email, senha, telefone) VALUES(?, ?, ?, ?)";
             $stmt = $DB->prepare($sql);
-            /*$stmt->bindParam(':name', $name);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':senha', $senha);
-            $stmt->bindParam(':birthdate', $telefone);*/
-            //$stmt->bindParam(':id_end', '2');
-
+          
             $teste = $stmt->execute(array($name, $email, $senha, $telefone));
      
             if ($teste)
