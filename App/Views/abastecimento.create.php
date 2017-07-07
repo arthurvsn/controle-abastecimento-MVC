@@ -1,9 +1,8 @@
        
 <h1> Abastecimento</h1>
  
-    <form action="/abastecimento/add" method="post">
+    <form action="/abastecimento/<?php echo $_SESSION['id_veic']; ?>/add" method="post">
         <label for="data">Data: </label>
-        <br>
         <input type="text" name="data" id="data" placeholder="dd/mm/YYYY">
  
         <br><br>
@@ -21,19 +20,21 @@
         <label for="valor">Valor: </label>
         <input type="tel" required="required" maxlength="15" name="valor" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" />
 
+        <br><br>
+
         <label for="odometroAt">Odometro Atual: </label>
         
-        <input type="odometroAt" name="odometroAt" id="odometroAt">  <br>
+        <input type="odometroAt" name="odometroAt" id="odometroAt">  <br><br>
 
         <label for="odometroAnt">Odometro Anterior: </label>
         
-        <input type="odometroAnt" name="odometroAnt" id="odometroAnt">  <br>
+        <input type="odometroAnt" name="odometroAnt" id="odometroAnt">  <br><br>
 
         <label for="litros">Litros:</label>
         
-        <input type="litros" name="litros" id="litros">  <br>
+        <input type="litros" name="litros" id="litros">  <br><br>
 
-       <input type="hidden" name="id_veic" value="<?php echo $_SESSION['id_veiculo'] ?>">    
+       <input type="hidden" name="id_veic" value="<?php echo $_SESSION['id_veic'] ?>">    
 
     <br>
         <input type="submit" value="Cadastrar">

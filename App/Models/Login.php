@@ -28,19 +28,22 @@
 
 		if (count($users) <= 0)
 		{
-		    echo "Email ou senha incorretos";
-		    exit;
+		    //echo "Email ou senha incorretos";
+		    \App\View::make('login.erro');
+		    //exit;
+		}else{
+			// pega o primeiro usuário
+			$user = $users[0];
+			 
+			//session_start();
+			$_SESSION['logged_in'] = true;
+			$_SESSION['user_id'] = $user['Id_cliente'];
+			$_SESSION['user_name'] = $user['nome'];	
+
+			return $user;	
 		}
 		 
-		// pega o primeiro usuário
-		$user = $users[0];
-		 
-		//session_start();
-		$_SESSION['logged_in'] = true;
-		$_SESSION['user_id'] = $user['Id_cliente'];
-		$_SESSION['user_name'] = $user['nome'];	
-
-		return $user;
+		
 
     	}
 
@@ -48,11 +51,32 @@
     		$q = mysql_query("SELECT * FROM utilizadores WHERE email = '$email'");
     		return $q;
 
+    		$query = "SELECT ";
+
+    	}
+
+    	public static function TrocarSenha($email, $novaSenha){
+
+    		$DB = DB::construtor();
+            $sql = "UPDATE cliente SET Senha = :novaSenha WHERE email = :email";
+            $stmt = $DB->prepare($sql);
+            $stmt->bindParam(':novaSenha', $novaSenha);
+            $stmt->bindParam(':email', $email);
+     
+            if ($stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+            	return false;
+            }
+
     	}
 
     	public static function GeraLink(){
     		// guardar este par de valores na tabela para confirmar mais tarde
-				$conf = mysql_query("INSERT INTO recuperacao VALUES ('$user', '$chave')");
+				/*$conf = mysql_query("INSERT INTO recuperacao VALUES ('$user', '$chave')");
 				echo "INSERT INTO recuperacao VALUES ('$user', '$chave')";
 			 
 			    if( mysql_affected_rows() == 1 ){
@@ -72,6 +96,6 @@
 			    } else {
 				  echo '<p>Esse utilizador não existe</p>';
 				}
-    	}
+    	*/}
     }
 ?>

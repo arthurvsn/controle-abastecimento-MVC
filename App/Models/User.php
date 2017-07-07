@@ -57,6 +57,21 @@
         /**
          * Salva no banco de dados um novo usuário
          */
+
+        public static function pesquisaEmail($email){
+            $sql = "SELECT email FROM cliente WHERE email = :email";
+            $DB = DB::construtor();
+
+            $stmt->bindParam(':email', $email);
+
+            if ($stmt->execute()){
+                    return true;
+                }else{
+
+                    return true;
+            }
+
+        }
         public static function save($name, $email, $senha, $telefone)
         {
             // validação (bem simples, só pra evitar dados vazios)
@@ -64,6 +79,13 @@
             {
                 echo "Volte e preencha todos os campos";
                 return false;
+            }
+
+            if(User::pesquisaEmail($email)){
+                echo "Email já cadastrado, tente outro";
+
+                header('Location: /add');
+                exit;
             }
               
             // a data vem no formato dd/mm/YYYY

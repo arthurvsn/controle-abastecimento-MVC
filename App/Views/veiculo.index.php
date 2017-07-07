@@ -38,12 +38,11 @@
 </td>
 
 <td>
-	<a href="/abastecimento" value="<php <?php echo $veiculos['Id_veic']; ?>"<?php $_SESSION['id_veiculo'] = $veiculos['modelo']; ?> >Abastecer</a>
+	<?php echo $veiculos['Id_veic']; ?>
+	<a href="/abastecimento/<?php echo $veiculos['Id_veic']; ?>" value="<?php echo $veiculos['Id_veic']; ?>">Abastecer</a>
 </td>
+	
 </tr>
-
-
-
 
 <?php endforeach; ?>
 
@@ -53,9 +52,6 @@
 </table>
 <?php else: ?>
  
- 
- 
 Nenhum veículo cadastrado
- 
- 
+
 <?php endif; ?>

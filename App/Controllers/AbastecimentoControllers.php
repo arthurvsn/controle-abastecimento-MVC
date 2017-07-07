@@ -4,11 +4,13 @@
 
     use \App\Models\Abastecimento; 
 
+
     class AbastecimentoController{
 
         /** * Listagem de usuários */ 
-        public function index(){
-             $abastecimento = Abastecimento::selectAllById($_SESSION['id_veiculo']); 
+        public function index($id){
+            $_SESSION['id_veic'] = $id;
+            $abastecimento = Abastecimento::selectAllById($id); 
 
              \App\View::make('abastecimento.index',
                 [ 'abastecimento' => $abastecimento]
@@ -39,7 +41,7 @@
      
             if (Abastecimento::save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $litros, $id_veic))
             {
-                header('Location: /abastecimento');
+                header('Location: /veiculo');
                 exit;
             }
         }

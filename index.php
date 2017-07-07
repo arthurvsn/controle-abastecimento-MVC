@@ -36,6 +36,16 @@ require 'App/Controllers/AbastecimentoControllers.php';
         $LoginController->logar();        
     });
 
+    $app->get('/trocarsenha', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->TrocarSenha();
+    });
+
+    $app->post('/trocarsenha', function(){
+        $LoginController = new \App\Controllers\LoginController;
+        $LoginController->Recuperar();
+    });
+
     $app->get('/logout', function(){
         $LoginController = new \App\Controllers\LoginController;
         $LoginController->logout();
@@ -149,17 +159,39 @@ require 'App/Controllers/AbastecimentoControllers.php';
     }); 
 
     //Abastecimento
-     $app->get('/abastecimento', function(){
+     $app->get('/abastecimento/:id', function($id){
+        $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
-        $AbastecimentoController->index();
+        $AbastecimentoController->index($id);
     }); 
 
-    $app->get('/abastecimento/add', function(){
+    $app->get('/abastecimento/:id/add', function($id){
+        $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->create();
     }); 
+     
+    $app->post('/abastecimento/:id/add', function($id){
+        $var = $id;
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
+        $AbastecimentoController->store();
+    }); 
 
-    $app->post('/abastecimento/add', function(){
+    $app->get('/abastecimento/:id/edit', function($id){
+        $var = $id;
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
+        $AbastecimentoController->edit($var);
+    });
+
+    $app->post('/abastecimento/:id/edit', function($id){
+        $var = $id;
+        $AbastecimentoController = new \App\Controllers\AbastecimentoController;
+        $AbastecimentoController->update();
+    }); 
+
+
+
+    $app->post('/abastecimento/:id/remove', function($id){
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->store();
     }); 

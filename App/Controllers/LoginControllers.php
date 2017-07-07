@@ -22,9 +22,9 @@
 
 
 			// cria o hash da senha
-			//$senha = sha1(md5($password));
+			$senha = sha1(md5($password));
 
-			$senha = sha1(md5("teste"));			
+			//$senha = sha1(md5("teste"));			
 			//$senha = make_hash($password);
 
 			$user = Login::Logar($email, $senha);
@@ -58,19 +58,38 @@
 			
     	} 
 
+    	public function TrocarSenha(){
+    		\App\View::make('login.alterar');
+    	}
     	public function Recuperar(){
 
-			$email = isset($_POST['email']) ? $_POST['email'] : '';
-			$q = Login::Recuperar($email);
+    		$email = isset($_POST['email']) ? $_POST['email'] : null;
+            $password = isset($_POST['senha']) ? $_POST['senha'] : null;            
+            $senhaRepetida = isset($_POST['senhaRepetida']) ? $_POST['senhaRepetida'] : null;   
+			
+			$senha = sha1(md5($password));
+            $senhaNova = sha1(md5($senhaRepetida));
 
-			if( mysql_num_rows($q) == 1 ){
+			if($senha == $senhaNova){
+                if(Login::TrocarSenha($email, $senhaNova)){
+                	echo "trocou";
+                }else{
+                	echo "deu ruim";
+                }
+            }else{            
+                echo "Senhas diferentes";
+            }
+			/*$email = isset($_POST['email']) ? $_POST['email'] : ' ';
+			$q = Login::Recupera($email);*/
+
+			/*if( mysql_num_rows($q) == 1 ){
 			      // o utilizador existe, vamos gerar um link único e enviá-lo para o e-mail
 			 
 			      // gerar a chave
 			      // exemplo adaptado de http://snipplr.com/view/20236/
 			      $chave = sha1(uniqid( mt_rand(), true));
 			 
-			}			     
+			}*/			     
 		}
     }
 ?>

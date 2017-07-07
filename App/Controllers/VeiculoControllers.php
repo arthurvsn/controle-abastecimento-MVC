@@ -9,7 +9,8 @@
 
         /** * Listagem de usuários */ 
         public function index(){
-            $veiculo = Veiculo::selectAllById($_SESSION['user_id']);             
+            $veiculo = Veiculo::selectAllById($_SESSION['user_id']);
+                         
              \App\View::make('veiculo.index',
                 [ 'veiculo' => $veiculo]
             );

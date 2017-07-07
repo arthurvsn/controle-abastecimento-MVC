@@ -24,9 +24,9 @@
      
             $stmt->execute();
      
-            $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);            
+            $abastecimento = $stmt->fetchAll(\PDO::FETCH_ASSOC);            
      
-            return $users;
+            return $abastecimento;
         }
         
         public static function selectAllById($id) {
@@ -34,7 +34,7 @@
          //$where = ''; 
 
         if (!empty($id)) { 
-            $where = 'WHERE Id_abastec = :id'; 
+            $where = 'WHERE Id_veic = :id'; 
         }         
 
             $sql = sprintf("SELECT Id_abastec, Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic FROM abastecimento $where"); 
@@ -50,7 +50,7 @@
             $stmt->execute();
          
             $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-         
+            
             return $users;
         }
      
@@ -60,6 +60,9 @@
         public static function save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $litros, $id_veic)
         {
             // validação (bem simples, só pra evitar dados vazios)
+            if(!empty($id_veic)){
+                echo "$id_veic";
+            }
             if (empty($data) || empty($tipoComb) || empty($valor) || empty($litros))
             {
                 echo "Volte e preencha todos os campos";
