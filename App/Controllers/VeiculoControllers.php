@@ -87,6 +87,10 @@
             }
         }
 
+        public function Relatorio(){
+            \App\View::make('relatorio.index');
+        }
+
         
     }
 ?>

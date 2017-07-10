@@ -196,6 +196,11 @@ require 'App/Controllers/AbastecimentoControllers.php';
         $AbastecimentoController->store();
     }); 
 
+    $app->get('/veiculo/relatorio/:id', function($id){
+        $var = $id;
+        $VeiculoController = new \App\Controllers\VeiculoController;
+        $VeiculoController->Relatorio();
+    });
 
     $app->get('/contato', function(){
         $ContatoController = new \App\Controllers\ContatoController;

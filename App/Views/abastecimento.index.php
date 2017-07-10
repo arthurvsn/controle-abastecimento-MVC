@@ -1,7 +1,13 @@
 <h1>Listagem de Abastecimento</h1> 
  
 <a href="/veiculo/abastecimento/add/<?php echo $_SESSION['id_veic']; ?>">Adicionar abastecimento</a><br><br>
-<h3> Veiculo: <?php echo $_SESSION['id_veic']; ?></h3>
+<?php
+	use \App\Models\Veiculo;
+	$veiculo = Veiculo::selectAllById($_SESSION['id_veic']);
+	//var_dump($veiculo);
+	echo "<h3>Veiculo: ".$veiculo[0]['modelo']. "</h3>";
+?>
+<h3> </h3>
 
 <?php if (count($abastecimento) > 0): ?>
  
@@ -16,13 +22,10 @@
 	<tr>
 	 
 		<th width="20%">Data</th>
-		 
-		 
+		 		 
 		<th>Tipo combustivel</th>
-		 
-		 
+		 		 
 		<th>Valor pago</th>		 				
-		 
 		 
 		<th>Odometro atual</th>
 	 
