@@ -15,7 +15,7 @@
             <?php else: ?>
             <li><a href="/login">Home</a>
             <?php endif; ?>
-            <li><a href="#">Contato</a>
+            <li><a href="/contato">Contato</a>
 
             <li><a href="/logout">Sair</a>
         </ul>

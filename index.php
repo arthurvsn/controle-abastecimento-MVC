@@ -196,5 +196,16 @@ require 'App/Controllers/AbastecimentoControllers.php';
         $AbastecimentoController->store();
     }); 
 
+
+    $app->get('/contato', function(){
+        $ContatoController = new \App\Controllers\ContatoController;
+        $ContatoController->create();
+    });
+
+    $app->post('/contato', function(){
+        $ContatoController = new \App\Controllers\ContatoController;
+        $ContatoController->store();
+    });
+
     $app->run();
 ?>
