@@ -65,15 +65,18 @@
         public function update()
         {
             // pega os dados do formuário
-            $id_cliente = $_POST['id'];
-            $name = isset($_POST['name']) ? $_POST['name'] : null;
-            $email = isset($_POST['email']) ? $_POST['email'] : null;
-            $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
-            $telefone = isset($_POST['telefone']) ? $_POST['telefone'] : null;
+            $data = isset($_POST['data']) ? $_POST['data'] : null;
+            $tipoComb = isset($_POST['tipoComb']) ? $_POST['tipoComb'] : null;
+            $valor = isset($_POST['valor']) ? $_POST['valor'] : null;
+            $odometroAt = isset($_POST['odometroAt']) ? $_POST['odometroAt'] : null;
+            $odometroAnt = isset($_POST['odometroAnt']) ? $_POST['odometroAnt'] : null;
+            $litros = isset($_POST['litros']) ? $_POST['litros'] : null;
+            $id_veic = isset($_POST['id_veic']) ? $_POST['id_veic'] : null;
+            $id_abast = isset($_POST['id_abast']) ? $_POST['id_veic'] : null;
      
-            if (Abastecimento::update($id_cliente, $name, $email, $senha, $telefone))
+            if (Abastecimento::save($data, $tipoComb, $valor, $odometroAt, $odometroAnt, $litros, $id_veic))
             {
-                header('Location: /');
+                header('Location: /veiculo');
                 exit;
             }
         }

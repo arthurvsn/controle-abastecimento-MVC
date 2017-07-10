@@ -159,31 +159,31 @@ require 'App/Controllers/AbastecimentoControllers.php';
     }); 
 
     //Abastecimento
-     $app->get('/abastecimento/:id', function($id){
+     $app->get('/veiculo/abastecimento/:id', function($id){
         $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->index($id);
     }); 
 
-    $app->get('/abastecimento/:id/add', function($id){
+    $app->get('/veiculo/abastecimento/add/:id', function($id){
         $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->create();
     }); 
      
-    $app->post('/abastecimento/:id/add', function($id){
+    $app->post('/veiculo/abastecimento/add/:id', function($id){
         $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->store();
     }); 
 
-    $app->get('/abastecimento/:id/edit', function($id){
+    $app->get('/veiculo/abastecimento/edit/:id', function($id){
         $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->edit($var);
     });
 
-    $app->post('/abastecimento/:id/edit', function($id){
+    $app->post('/veiculo/abastecimento/edit/:id', function($id){
         $var = $id;
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->update();
@@ -191,7 +191,7 @@ require 'App/Controllers/AbastecimentoControllers.php';
 
 
 
-    $app->post('/abastecimento/:id/remove', function($id){
+    $app->post('/veiculo/abastecimento/remove/:id', function($id){
         $AbastecimentoController = new \App\Controllers\AbastecimentoController;
         $AbastecimentoController->store();
     }); 

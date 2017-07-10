@@ -1,6 +1,6 @@
 <h1>Listagem de Abastecimento</h1> 
  
-<a href="/abastecimento/<?php echo $_SESSION['id_veic']; ?>/add">Adicionar abastecimento</a><br><br>
+<a href="/veiculo/abastecimento/add/<?php echo $_SESSION['id_veic']; ?>">Adicionar abastecimento</a><br><br>
 <h3> Veiculo: <?php echo $_SESSION['id_veic']; ?></h3>
 
 <?php if (count($abastecimento) > 0): ?>
@@ -53,8 +53,8 @@
 <td><?php echo $abastecimentos['Litros']; ?></td>
 
 <td>
-	<a href="/abastecimento/edit/<?php echo $abastecimentos['Id_abastec']; ?>">Editar</a>
-    <a href="/abastecimento/remove/<?php echo $abastecimentos['Id_abastec']; ?>" onclick="return confirm('Tem certeza de que deseja remover?');">Remover</a>
+	<a href="/veiculo/abastecimento/edit/<?php echo $abastecimentos['Id_abastec']; ?>">Editar</a>
+    <a href="/veiculo/abastecimento/remove/<?php echo $abastecimentos['Id_abastec']; ?>" onclick="return confirm('Tem certeza de que deseja remover?');">Remover</a>
 </td>
 </tr>
 

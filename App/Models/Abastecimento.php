@@ -34,7 +34,7 @@
          //$where = ''; 
 
         if (!empty($id)) { 
-            $where = 'WHERE Id_veic = :id'; 
+            $where = 'WHERE Id_abastec = :id'; 
         }         
 
             $sql = sprintf("SELECT Id_abastec, Data, Tipo_Combustivel, Valor, Odometro_Atual, Odometro_Ant, Litros, Id_Veic FROM abastecimento $where"); 
@@ -49,9 +49,9 @@
          
             $stmt->execute();
          
-            $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $abastecimento = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             
-            return $users;
+            return $abastecimento;
         }
      
         /**

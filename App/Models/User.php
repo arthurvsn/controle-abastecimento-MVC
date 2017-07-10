@@ -81,13 +81,16 @@
             // validação (bem simples, só pra evitar dados vazios)
             if (empty($name) || empty($email) || empty($senha) || empty($telefone))
             {
-                echo "Volte e preencha todos os campos";
-                return false;
+                echo '<script>alert("Preencha todos os campos");</script>';
+                header('Location /add');
+                exit;
+                //return false;
             }
 
             if(User::pesquisaEmail($email)){                
 
-                header('Location /add');
+                echo '<script> alert("ola");</script>';
+                header('Location /add');                
                 exit;
             }
               

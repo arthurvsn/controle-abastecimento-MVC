@@ -17,6 +17,8 @@
 		<th>Opções</th>
 
 	 	<th>Cadastrar Abastecimento</th>
+
+	 	<th>Relátorios
 	</tr>
 
 </thead>
@@ -38,8 +40,11 @@
 </td>
 
 <td>
-	<?php echo $veiculos['Id_veic']; ?>
-	<a href="/abastecimento/<?php echo $veiculos['Id_veic']; ?>" value="<?php echo $veiculos['Id_veic']; ?>">Abastecer</a>
+	<a href="/veiculo/abastecimento/<?php echo $veiculos['Id_veic']; ?>" value="<?php echo $veiculos['Id_veic']; ?>">Abastecer</a>
+</td>
+
+<td>
+	<a href="/veiculo/relatorio/<?php echo $veiculos['Id_veic']; ?>" value="<?php echo $veiculos['Id_veic']; ?>">Relatorio</a>
 </td>
 	
 </tr>
