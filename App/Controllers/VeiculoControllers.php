@@ -85,12 +85,6 @@
                 header('Location: /veiculo');
                 exit;
             }
-        }
-
-        public function Relatorio(){
-            \App\View::make('relatorio.index');
-        }
-
-        
+        }        
     }
 ?>

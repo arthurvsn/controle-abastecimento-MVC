@@ -1,6 +1,17 @@
-       
+
+
 <h1> Abastecimento</h1>
- 
+
+<div data-ng-app="" data-ng-init="quantity=1;price=0.7">
+
+<h2>Diferença da gasolina/alcool</h2>
+<h4>Digite os valores abaixo:</h4>
+Gasolina: <input type="text" ng-model="quantity">
+
+<p><b>Valor máximo do alccol para compensar o abastecimento:</b> {{quantity * price}}</p>
+
+</div>
+    <h2>Dados do abastecimento</h2>
     <form action="/abastecimento/<?php echo $_SESSION['id_veic']; ?>/add" method="post">
         <label for="data">Data: </label>
         <input type="text" name="data" id="data" placeholder="dd/mm/YYYY">

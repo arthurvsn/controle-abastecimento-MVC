@@ -6,8 +6,7 @@ namespace App;
  * Classe para gerar uma view da aplicação.
  * É responsável por carregar o template geral e adicionar a view que deve ser exibida
  */
-class View
-{
+class View{
     /**
      * Exibe uma view.
      * Função inspirada na usada pelo Laravel 4. Veja: http://laravel.com/docs/4.2/responses#views

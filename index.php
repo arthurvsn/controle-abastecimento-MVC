@@ -8,6 +8,8 @@ require 'App/Controllers/UsersControllers.php';
 require 'App/Controllers/LoginControllers.php';
 require 'App/Controllers/VeiculoControllers.php';
 require 'App/Controllers/AbastecimentoControllers.php';
+require 'App/Controllers/RelatorioControllers.php';
+//require 'App/Controllers/ContatoControllers.php';
 
     //$app = new \Slim\Slim();
     $app = new \Slim\Slim(array(
@@ -198,8 +200,8 @@ require 'App/Controllers/AbastecimentoControllers.php';
 
     $app->get('/veiculo/relatorio/:id', function($id){
         $var = $id;
-        $VeiculoController = new \App\Controllers\VeiculoController;
-        $VeiculoController->Relatorio();
+        $RelatorioController = new \App\Controllers\RelatorioController;
+        $RelatorioController->index();
     });
 
     $app->get('/contato', function(){
@@ -210,6 +212,10 @@ require 'App/Controllers/AbastecimentoControllers.php';
     $app->post('/contato', function(){
         $ContatoController = new \App\Controllers\ContatoController;
         $ContatoController->store();
+    });
+
+    $app->get('/sobre', function(){
+        \App\View::make('sobre');
     });
 
     $app->run();
