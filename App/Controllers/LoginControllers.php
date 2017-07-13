@@ -4,37 +4,34 @@
 
     use \App\Models\Login;
 
-
-
     class LoginController{
 
     	public function login(){    		
-     
- 	       \App\View::make('login.form');
- 	       //require_once('login.form.php'); 	
-    	}
+
+ 	       \App\View::make('login.form');	
+
+ 	    }
 
     	public function logar(){
 
     		// resgata variáveis do formulário
-			$email = isset($_POST['email']) ? $_POST['email'] : '';
+			$email = isset($_POST['username']) ? $_POST['username'] : '';
 			$password = isset($_POST['password']) ? $_POST['password'] : '';
-
 
 			// cria o hash da senha
 			$senha = sha1(md5($password));
 
-			//$senha = sha1(md5("teste"));			
-			//$senha = make_hash($password);
+			$user = Login::Logar($email, $senha);			
 
-			$user = Login::Logar($email, $senha);
-
-			//var_dump($logar);
-
-			if($user){				
-               \App\View::make('login.index',
-                [ 'users' => $user]);
-            }
+			if($user){
+				//var_dump($_SESSION['logged_in']);
+               	//$view = array("sucess", \App\View::make('login.index',['users' => $user]));
+               	/*\App\View::make('login.index',
+               		['users' => $user]);*/
+               	echo "sucess";
+            }/*else{
+            	return false;
+            }*/
 			 
 			
     	}

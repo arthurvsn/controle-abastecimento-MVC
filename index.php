@@ -35,7 +35,7 @@ require 'App/Controllers/RelatorioControllers.php';
 
     $app->post('/logar', function(){        
         $LoginController = new \App\Controllers\LoginController;
-        $LoginController->logar();        
+        $LoginController->logar();
     });
 
     $app->get('/trocarsenha', function(){

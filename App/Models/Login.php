@@ -3,34 +3,28 @@
     use App\DB; 
 
     class Login { 
-
     	public static function Logar($email, $senha){    	
-
     	$where = 'WHERE email = :email AND Senha = :senha';
     	$DB = DB::construtor();
 		 
 		$sql = "SELECT Id_cliente, nome FROM cliente WHERE email = :email AND Senha = :senha";
-
-
 		$stmt = $DB->prepare($sql);
 		 
 		/*$stmt->bindParam(':email', $email);
 		$stmt->bindParam(':password', $senha);*/
-
 		if (!empty($where)){
             $stmt->bindParam(':email', $email, \PDO::PARAM_INT);
             $stmt->bindParam(':senha', $senha, \PDO::PARAM_INT);
         }
 		 
 		$stmt->execute();		
-
 		$users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
 		if (count($users) <= 0)
 		{
 		    //echo "Email ou senha incorretos";
-		    \App\View::make('login.erro');
+		    //\App\View::make('login.erro');
 		    //exit;
+		    echo "wrong";
 		}else{
 			// pega o primeiro usuário
 			$user = $users[0];
@@ -39,24 +33,18 @@
 			$_SESSION['logged_in'] = true;
 			$_SESSION['user_id'] = $user['Id_cliente'];
 			$_SESSION['user_name'] = $user['nome'];	
-
-			return $user;	
+			//return $user;	
+			echo "sucess";
 		}
 		 
 		
-
     	}
-
     	public static function Recupera($email){
     		$q = mysql_query("SELECT * FROM utilizadores WHERE email = '$email'");
     		return $q;
-
     		$query = "SELECT ";
-
     	}
-
     	public static function TrocarSenha($email, $novaSenha){
-
     		$DB = DB::construtor();
             $sql = "UPDATE cliente SET Senha = :novaSenha WHERE email = :email";
             $stmt = $DB->prepare($sql);
@@ -71,9 +59,7 @@
             {
             	return false;
             }
-
     	}
-
     	public static function GeraLink(){
     		// guardar este par de valores na tabela para confirmar mais tarde
 				/*$conf = mysql_query("INSERT INTO recuperacao VALUES ('$user', '$chave')");

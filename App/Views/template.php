@@ -4,6 +4,16 @@
         <meta charset="utf-8">
         <title>Sistema de Controle de Abastecimento</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <meta charset="utf-8"/>
+        <meta name="robots" content="noindex"/>
+        <title>angulrjs login page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" id="main-css"/>
+        <link href="css/style.css" rel="stylesheet" id="main-css"/>
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>  
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     </head>
  
     <body>
